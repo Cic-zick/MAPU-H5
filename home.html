@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet" />
+    <link href="css/other.css" rel="stylesheet" />
+</head>
+<body style="background-color: #FFFFFF;">
+  <div class="mui-slider">
+    <div class="mui-slider-group mui-slider-loop">
+      <!--支持循环，需要重复图片节点-->
+    	  <div class="mui-slider-item mui-slider-item-duplicate"><a href="#"><img src="image/4.jpg" /></a></div>
+      <div class="mui-slider-item"><a href="#"><img src="image/1.jpg" /></a></div>
+      <div class="mui-slider-item"><a href="#"><img src="image/2.jpg" /></a></div>
+      <div class="mui-slider-item"><a href="#"><img src="image/3.jpg" /></a></div>
+      <div class="mui-slider-item"><a href="#"><img src="image/4.jpg" /></a></div>
+      <!--支持循环，需要重复图片节点-->
+      <div class="mui-slider-item mui-slider-item-duplicate"><a href="#"><img src="image/1.jpg" /></a></div>
+    </div>
+  </div>
+  
+  <div class="btn-img">
+	<img src="image/parking.png" />
+	<img src="image/payment.png" />
+	<img src="image/scan_code.png" />
+	<img src="image/charging.png" />
+	<br />
+	<span class="btn-text" style="margin-left:21px;">智能停车</span>
+	<span class="btn-text" style="margin-left:37px;">快捷缴费</span>
+	<span class="btn-text" style="margin-left:37px;">扫码充电</span>
+	<span class="btn-text" style="margin-left:37px;">寻找电桩</span>
+	<br />
+  </div>
+  
+  <div class="home-parking-label">
+  	<hr />
+  	  <label> 附近停车场 </label>
+  	<hr />
+  </div>
+  
+  <div class="mui-content p_list">
+  	<ul id="parking_list" class="mui-table-view">
+  	  <li class="mui-table-view-cell mui-media">
+  		<a href="javascript:;">
+          <img class="mui-media-object mui-pull-left" src="image/parking_img.png">
+          <div class="mui-media-body">
+            岚牌路
+            <p class='mui-ellipsis'>空余车位：&nbsp;0&nbsp; 个&nbsp;&nbsp;&nbsp;&nbsp;停车价格：3.0 元起</p>
+          </div>
+        </a>
+  	  </li>
+  	  
+  	  <li class="mui-table-view-cell mui-media">
+  		<a href="javascript:;">
+          <img class="mui-media-object mui-pull-left" src="image/parking_img.png">
+          <div class="mui-media-body">
+            学园路1段
+            <p class='mui-ellipsis'>空余车位：32 个&nbsp;&nbsp;&nbsp;&nbsp;停车价格：3.0 元起</p>
+          </div>
+        </a>
+  	  </li>
+  	  
+	  <li class="mui-table-view-cell mui-media">
+  		<a href="javascript:;">
+          <img class="mui-media-object mui-pull-left" src="image/parking_img.png">
+          <div class="mui-media-body">
+            学园路2段
+            <p class='mui-ellipsis'>空余车位：&nbsp;8&nbsp; 个&nbsp;&nbsp;&nbsp;&nbsp;停车价格：3.0 元起</p>
+          </div>
+        </a>
+  	  </li>
+  	  
+  	  <li class="mui-table-view-cell mui-media">
+  		<a href="javascript:;">
+          <img class="mui-media-object mui-pull-left" src="image/parking_img.png">
+          <div class="mui-media-body">
+            学园路3段
+            <p class='mui-ellipsis'>空余车位：&nbsp;2&nbsp; 个&nbsp;&nbsp;&nbsp;&nbsp;停车价格：3.0 元起</p>
+          </div>
+        </a>
+  	  </li>
+
+	  <li class="mui-table-view-cell mui-media">
+  		<a href="javascript:;">
+          <img class="mui-media-object mui-pull-left" src="image/parking_img.png">
+          <div class="mui-media-body">
+            学园路4段
+            <p class='mui-ellipsis'>空余车位：&nbsp;6&nbsp; 个&nbsp;&nbsp;&nbsp;&nbsp;停车价格：3.0 元起</p>
+          </div>
+        </a>
+  	  </li>
+  	</ul>
+  </div>
+	
+</body>
+<script>
+  var gallery = mui('.mui-slider');
+  gallery.slider({
+    interval:5000//自动轮播周期，若为0则不自动播放，默认为0；
+  });
+
+  mui.plusReady(function(){
+	mui.init();
+	var parking_page = null;
+	mui("#parking_list").on("tap",".mui-table-view-cell",function(){
+	  var parking_id = this.innerText;
+	  let iii = parking_id.indexOf("空") - 1;
+	  parking_id = parking_id.substring(1, iii);
+	  parking_page = plus.webview.getWebviewById("parking.html");
+	  mui.fire(parking_page,"parking_id",{id:parking_id});
+	  mui.openWindow("parking.html","parking.html");
+	});
+  });
+</script>
+</html>

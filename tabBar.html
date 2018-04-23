@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+  <title></title>
+  <script src="js/mui.min.js"></script>
+  <link href="css/mui.min.css" rel="stylesheet" type="text/css"/>
+  <link href="css/iconfont.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" charset="utf-8">
+  mui.plusReady(function(){
+    	mui.init({
+   	  subpages: [{
+    	  	url: "home.html", 
+    	  	id: "home.html",
+    	  	styles: {
+    	      top: "0px",
+      	  bottom: "52px",
+      	},
+       }],
+   	  
+   	   preloadPages:[{
+      			url:"parking.html",
+      			id:"parking.html",
+      			styles:{
+      				top:"0px",
+      				bottom:"0px",
+      			},
+       }],
+    })
+    		    	
+    //打开新的子页面
+    	document.getElementById("page_home").addEventListener("tap",function(){
+      mui.openWindow({
+      	url: "home.html",
+      	id: "home.html",
+      	styles:{
+      	  top: "0px",
+      	  bottom: "52px",
+      	},
+      	extras:{
+      	  
+      	},
+      	show:{
+      	  aniShow:"none",
+      	}
+      });
+      tab_bar_index = 0;
+    })
+
+    document.getElementById("page_mine").addEventListener("tap",function(){
+      mui.openWindow({
+      	url: "mine.html",
+      	id: "mine.html",
+      	styles:{
+      	  top: "0px",
+      	  bottom: "52px",
+      	},
+      	extras:{
+      	  
+      	},
+      	show:{
+      	  aniShow: "none",
+      	}
+      });
+      tab_bar_index = 3;
+    })
+    
+    document.getElementById("page_map").addEventListener("tap",function(){
+      mui.openWindow({
+      	url: "map.html",
+      	id: "map.html",
+      	styles:{
+      	  top: "0px",
+      	  bottom: "52px",
+      	},
+      	show:{
+      	  aniShow: "none",
+      	}
+      });
+      tab_bar_index = 1;
+    })
+    
+    document.getElementById("page_payment").addEventListener("tap",function(){
+      mui.openWindow({
+      	url: "payment.html",
+      	id: "payment.html",
+      	styles:{
+      	  top: "0px",
+      	  bottom: "52px",
+      	},
+      	show:{
+      	  aniShow: "none",
+      	}
+      });
+      tab_bar_index = 2;
+    })
+      
+    //滑动切换页面
+    var tab_bar_array=["home", "map", "payment", "mine"];
+    var tab_bar_index = 0;
+      window.addEventListener("swipeleft",function(){
+      	if(tab_bar_index < tab_bar_arr.length-1){
+      	  tab_bar_index ++;
+      		var btn = document.getElementById(tab_bar_arr[tab_bar_index]);
+      		mui.trigger(btn,"tap");
+      	}
+      });
+      
+      window.addEventListener("swiperight",function(){
+      	if(tab_bar_index > 0){
+          tab_bar_index --;
+          var btn = document.getElementById(tab_bar_arr[tab_bar_index]);
+      	  mui.trigger(btn,"tap");
+      	}
+      });
+  	})
+  </script>
+</head>
+<body>
+  <nav class="mui-bar mui-bar-tab">
+    <a class="mui-tab-item mui-active" id="page_home" data-wid="recommend.html">
+      <span class="mui-icon iconfont icon-zhuye"></span>
+      <span class="mui-tab-label">首页</span>
+	</a>
+    <a class="mui-tab-item" id="page_map" data-wid="mui.html">
+      <span class="mui-icon iconfont icon-ditu"></span>
+      <span class="mui-tab-label">地图</span>
+    </a>
+    <a class="mui-tab-item" id="page_payment" data-wid="h5+.html">
+      <span class="mui-icon iconfont icon-jiaofei"></span>
+      <span class="mui-tab-label">缴费</span>
+    </a>
+    <a class="mui-tab-item" id="page_mine" data-wid="mine.html">
+      <span class="mui-icon iconfont icon-wode"></span>
+      <span class="mui-tab-label">我的</span>
+    </a>
+ </nav>
+</body>
+<script>
+	
+</script>
+</html>
