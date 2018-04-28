@@ -12,17 +12,11 @@
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 		    <h1 class="mui-title">停车场详情</h1>
 		</header>
-		<div class="mui-content">
-		    
-		</div>
 	</body>
 	<script type="text/javascript">
-		mui.plusReady(function(){
-			mui.init();
-			window.addEventListener("parking_id",function(event){
-				var p_id = event.detail.id;
-				mui.alert("停车场名称是"+"“"+p_id+"”");
-			})
-		});
+		window.addEventListener("parking_id",function(event){
+			var p_id = event.detail.id;
+			mui.alert("停车场名称是"+"“"+p_id+"”");
+		})
 	</script>
 </html>

@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+	</head>
+	
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav">
+				<a style="font-size: 16px;">返回</a>
+			</a>
+			<h1 class="mui-title">关于本机</h1>
+		</header>
+		<div class="mui-content">
+			<button type="button" class="mui-btn mui-btn-blue mui-btn-block" onclick="getDeviceInfo()">设备信息</button>
+			<button type="button" class="mui-btn mui-btn-blue mui-btn-block" onclick="getOsInfo()">系统信息</button>
+			<button type="button" class="mui-btn mui-btn-blue mui-btn-block" onclick="getScreenInfo()">屏幕信息</button>
+			<button type="button" class="mui-btn mui-btn-blue mui-btn-block" onclick="dial()">拨打电话</button>
+			<button type="button" class="mui-btn mui-btn-blue mui-btn-block" onclick="shock()">震动手机</button>
+			<button type="button" class="mui-btn mui-btn-blue mui-btn-block" onclick="networkInfo()">网络状态</button>
+			
+    			<div style="padding:20px;">
+        			<div class="mui-input-row mui-input-range">
+            			<label>屏幕亮度</label>
+            			<input type="range" min="0" max="100" value="1" onchange="setLight(this.value);">
+        			</div>
+    			</div>
+		</div>
+	</body>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+			function getDeviceInfo() {
+				let imei = "设备身份码：" + plus.device.imei + "\n";
+				let imsi = "用户识别码：" + plus.device.imsi + "\n";
+				let model = "设备型号：" + plus.device.model + "\n";
+				let uuid = "设备唯一标识：" + plus.device.uuid;
+				mui.alert(imei + imsi + model + uuid);
+			}
+			
+			function getOsInfo() {
+				let luanguage = "系统语言：" + plus.os.language + "\n"; 
+				let version = "系统版本：" + plus.os.version + "\n";
+				let name = "系统名称：" + plus.os.name + "\n";
+				let vender = "系统供应商信息：" + plus.os.vendor;
+				mui.alert(luanguage + version + name + vender);
+			}
+			
+			function getScreenInfo() {
+				let scale = plus.screen.scale;
+				let screenHeight = "屏幕高度：" + plus.screen.resolutionHeight * scale + "\n";
+				let screenWidth = "屏幕宽度：" + plus.screen.resolutionWidth * scale + "\n";
+				let displayHeight = "应用显示高度：" + plus.display.resolutionHeight + "\n";
+				let displayWidth = "应用显示宽度：" + plus.display.resolutionWidth;
+				mui.alert(screenHeight + screenWidth + displayHeight + displayWidth);
+			}
+			
+			// 调整亮度
+			function setLight(val) {
+    				plus.screen.setBrightness(val/100);
+			}
+			
+			// 拨打电话
+			function dial() {
+				plus.device.dial("10000", true);
+			}
+			
+			// 设备震动
+			function shock() {
+				plus.device.vibrate(500);
+			}
+			
+			function networkInfo() {
+				let network = plus.networkinfo.getCurrentType();
+				switch (network) {
+					case 0:
+						mui.alert("网络连接状态未知");
+						break;
+					case 1:
+						mui.alert("无网络连接");
+						break;
+					case 2:
+						mui.alert("有线网络连接");
+						break;
+					case 3:
+						mui.alert("无线Wi-Fi网络连接");
+						break;
+					case 4:
+						mui.alert("蜂窝移动2G网络连接");
+						break;
+					case 5:
+						mui.alert("蜂窝移动3G网络连接");
+						break;
+					case 6:
+						mui.alert("蜂窝移动4G网络连接");
+						break;
+				}
+			}
+		</script>
+</html>

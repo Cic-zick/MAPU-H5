@@ -125,6 +125,12 @@
       		关于我们
       	</a>
       </li>
+      <li id="info"  class="mui-table-view-cell">
+      	<a class="mui-navigate-right">
+      		<span class="iconfont icon-shouji">&nbsp;&nbsp;</span>
+      		关于本机
+      	</a>
+      </li>
     </ul>
   </div>
   
@@ -136,4 +142,22 @@
   	</ul>
   </div>
 </body>
+<script type="text/javascript" charset="utf-8">
+  mui.plusReady(function(){
+	mui.init({
+	  preloadPages:[{
+      	url:"device.html",
+      	id:"device.html",
+      	styles:{
+      	  top:"0px",
+      	  bottom:"0px",
+      	},
+    	  }],
+    });
+    
+    mui("#info").on("tap",".mui-navigate-right",function(){
+      mui.openWindow("device.html","device.html");
+    })
+ })
+</script>
 </html>
